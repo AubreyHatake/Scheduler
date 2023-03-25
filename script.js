@@ -2,6 +2,9 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var btn = $('btn saveBtn');
+var timeDisplayEl = $('#currentDay')
+
+
 
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
