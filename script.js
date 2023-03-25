@@ -4,51 +4,24 @@
 // Variable
 var btn = $('btn saveBtn');
 var timeDisplayEl = $('#currentDay')
-
+var projectNameInputEl = $('description')
 // This function will help display the date and time 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   timeDisplayEl.text(rightNow);
 }
 
+// this calls the display time function to show the date and time on the deployed site. 
+displayTime();
+// this sets the interval for the time to continue running correctly on the site.
+setInterval(displayTime, 1000);
+
 
 function saveProjectsToStorage(projects) {
   localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-function readProjectsFromStorage() {
-  var projects = localStorage.getItem('projects');
-  if (projects) {
-    projects = JSON.parse(projects);
-  } else {
-    projects = [];
-  }
-  return projects;
-}
 
-
-
-// Adds a project to local storage and prints the project data
-function handleProjectFormSubmit(event) {
-  event.preventDefault();
-  
-  // read user input from the form
-  var projectName = projectNameInputEl.val().trim();
-  
-  
-  var newProject = {
-    name: projectName,
-  };
-  
-  // add project to local storage
-  var projects = readProjectsFromStorage();
-  projects.push(newProject);
-  saveProjectsToStorage(projects);
-  
-  // print project data
-  printProjectData();
-  
-}
 
 
 
@@ -56,11 +29,7 @@ $(function () {
   
 });
 
-btn.addEventListener('btn saveBtn',handleProjectFormSubmit);
-// this calls the display time function to show the date and time on the deployed site. 
-displayTime();
-// this sets the interval for the time to continue running correctly on the site.
-setInterval(displayTime, 1000);
+
 
 // TODO: Add a listener for click events on the save button. This code should
 // use the id in the containing time-block as a key to save the user input in
