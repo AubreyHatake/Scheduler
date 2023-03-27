@@ -1,6 +1,6 @@
 // Variables
 var timeDisplayEl = $('#currentDay');
-
+var h2 = $('h2')
 // This function will help display the date and time 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
@@ -21,10 +21,11 @@ function saveProjectsToStorage() {
   var inputVal = $(this).siblings(".description").val();
   var keyVal = $(this).parent().attr("id");
   localStorage.setItem(keyVal, inputVal);
+  alert("added to local storage!");
   // console.log(inputVal);
 }
 
-// these getItems are to save and get each piece of data from the local sotrage 
+// these getItems are to get each piece of data from the local sotrage 
 $("#hour-9 .description").val(localStorage.getItem("hour-9"));
 $("#hour-10 .description").val(localStorage.getItem("hour-10"));
 $("#hour-11 .description").val(localStorage.getItem("hour-11"));
