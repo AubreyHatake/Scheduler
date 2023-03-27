@@ -1,18 +1,13 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 // Variables
-var btn = $('#projects');
 var timeDisplayEl = $('#currentDay');
-var projectNameInputEl = $('#input');
-var h2 = $("h2");
+
 // This function will help display the date and time 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   timeDisplayEl.text(rightNow);
 }
 
-// h2.innerHTML = localStorage.getItem('projects');
+
 
 // this calls the display time function to show the date and time on the deployed site. 
 displayTime();
@@ -20,38 +15,23 @@ displayTime();
 setInterval(displayTime, 1000);
 
 
-
+// In this function I am able to save eat item in the local storage by using, $this to go through the elements in the page and save the needed data in input val
+// keyVal is used here as a dynamic key, so that when data is entered by the user, each different key is saved correctly. 
 function saveProjectsToStorage() {
-  localStorage.setItem('projects', projectNameInputEl);
-  console.log(projectNameInputEl);
+  var inputVal = $(this).siblings(".description").val();
+  var keyVal = $(this).parent().attr("id");
+  localStorage.setItem(keyVal, inputVal);
+  // console.log(inputVal);
 }
 
+// these getItems are to save and get each piece of data from the local sotrage 
+$("#hour-9 .description").val(localStorage.getItem("hour-9"));
+$("#hour-10 .description").val(localStorage.getItem("hour-10"));
+$("#hour-11 .description").val(localStorage.getItem("hour-11"));
 
 
- document.getElementById("projects").addEventListener("click", saveProjectsToStorage);
-
-
- $(function () {
-  
- });
+// this is an event listener that will help the save button run the saveProjects function when clicked on by the user.
+ $(".saveBtn").on("click", saveProjectsToStorage);
 
 
 
-// TODO: Add a listener for click events on the save button. This code should
-// use the id in the containing time-block as a key to save the user input in
-// local storage. HINT: What does `this` reference in the click listener
-// function? How can DOM traversal be used to get the "hour-x" id of the
-// time-block containing the button that was clicked? How might the id be
-// useful when saving the description in local storage?
-//
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
-//
-// TODO: Add code to get any user input that was saved in localStorage and set
-// the values of the corresponding textarea elements. HINT: How can the id
-// attribute of each time-block be used to do this?
-//
-// TODO: Add code to display the current date in the header of the page.
