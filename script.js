@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 // Variable
-var btn = $('btn saveBtn');
+var btn = $('#projects');
 var timeDisplayEl = $('#currentDay')
 var projectNameInputEl = $('description')
 // This function will help display the date and time 
@@ -16,18 +16,20 @@ displayTime();
 // this sets the interval for the time to continue running correctly on the site.
 setInterval(displayTime, 1000);
 
+saveProjectsToStorage();
 
-function saveProjectsToStorage(projects) {
-  localStorage.setItem('projects', JSON.stringify(projects));
+function saveProjectsToStorage() {
+  localStorage.setItem('projects', projectNameInputEl);
 }
 
 
 
+ btn.addEventListener("click", saveProjectsToStorage);
 
 
-$(function () {
+ $(function () {
   
-});
+ });
 
 
 
