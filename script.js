@@ -1,30 +1,34 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-// Variable
+// Variables
 var btn = $('#projects');
-var timeDisplayEl = $('#currentDay')
-var projectNameInputEl = $('description')
+var timeDisplayEl = $('#currentDay');
+var projectNameInputEl = $('#input');
+var h2 = $("h2");
 // This function will help display the date and time 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   timeDisplayEl.text(rightNow);
 }
 
+// h2.innerHTML = localStorage.getItem('projects');
+
 // this calls the display time function to show the date and time on the deployed site. 
 displayTime();
 // this sets the interval for the time to continue running correctly on the site.
 setInterval(displayTime, 1000);
 
-saveProjectsToStorage();
+
 
 function saveProjectsToStorage() {
   localStorage.setItem('projects', projectNameInputEl);
+  console.log(projectNameInputEl);
 }
 
 
 
- btn.addEventListener("click", saveProjectsToStorage);
+ document.getElementById("projects").addEventListener("click", saveProjectsToStorage);
 
 
  $(function () {
